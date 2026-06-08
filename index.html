@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUDS MOTOR - Dealer Motor Multi-Brand | Kredit Motor DP 10-15%</title>
+  <meta name="description" content="BUDS MOTOR adalah showroom motor multi-brand untuk Honda, Yamaha, Suzuki, Kawasaki, dan Vespa. Kredit ringan DP 10%, simulasi kredit online, dan sales siap membantu.">
+  <meta name="theme-color" content="#111110">
+  <meta property="og:title" content="BUDS MOTOR - Showroom Motor Multi-Brand">
+  <meta property="og:description" content="Katalog motor multi-brand, simulasi kredit online, DP 10%, dan konsultasi sales langsung.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://budsmotor.netlify.app">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏍️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Plus Jakarta Sans', 'sans-serif'],
+            body: ['Inter', 'sans-serif']
+          },
+          colors: {
+            warmBlack: '#111110',
+            card: '#1C1B18',
+            cardAlt: '#23221E',
+            elevated: '#2A2924',
+            warmBorder: '#333129',
+            hoverBorder: '#4A4738',
+            textPrimary: '#FAF9F6',
+            textSecondary: '#A8A49B',
+            textMuted: '#78746A',
+            accent: '#F97316',
+            accentHover: '#EA580C',
+            accentLight: '#FDBA74',
+            success: '#22C55E',
+            error: '#EF4444'
+          },
+          boxShadow: {
+            card: '0 4px 24px rgba(0,0,0,0.25)',
+            cardHover: '0 8px 40px rgba(249,115,22,0.08)',
+            accent: '0 4px 16px rgba(249,115,22,0.25)',
+            chat: '0 8px 40px rgba(0,0,0,0.4)'
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #111110; color: #FAF9F6; }
+    h1, h2, h3, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #F97316, #FBBF24, #F97316);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradientShift 4s ease-in-out infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .float-soft { animation: floatSoft 4s ease-in-out infinite; }
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .chat-pulse { animation: chatPulse 2s ease-in-out infinite; }
+    @keyframes chatPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .typing-dot { animation: typingBounce 1s ease-in-out infinite; }
+    .typing-dot:nth-child(2) { animation-delay: .15s; }
+    .typing-dot:nth-child(3) { animation-delay: .3s; }
+    @keyframes typingBounce {
+      0%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-4px); }
+    }
+    .chat-window {
+      opacity: 0;
+      transform: scale(.9) translateY(16px);
+      pointer-events: none;
+      transition: opacity 200ms ease-out, transform 200ms ease-out;
+    }
+    .chat-window.open {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+    .chat-bubble-animate {
+      animation: bubbleIn 300ms ease-out both;
+    }
+    @keyframes bubbleIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .catalog-card { transition: opacity 250ms ease, transform 250ms ease, border-color 300ms ease, box-shadow 300ms ease; }
+    .catalog-image-wrap { height: 220px; }
+    .catalog-image { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 20px 35px rgba(0,0,0,.35)); }
+    .catalog-image-fallback { display: none; }
+    .catalog-image.is-broken { display: none; }
+    .catalog-image.is-broken + .catalog-image-fallback { display: flex; }
+    @media (max-width: 767px) {
+      .catalog-image-wrap { height: 190px; }
+      .catalog-card:hover { transform: none !important; }
+      .chat-window { max-height: calc(100vh - 112px); }
+    }
+    .catalog-card.is-hidden { opacity: 0; transform: translateY(12px); }
+    #catalogGrid.mobile-slider {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4A4738;
+      transition: all .25s ease;
+    }
+    .slider-dot.is-active {
+      width: 22px;
+      background: #F97316;
+    }
+    @media (max-width: 767px) {
+      #catalogGrid.mobile-slider {
+        display: flex;
+        grid-template-columns: none;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+      }
+      #catalogGrid.mobile-slider .catalog-card {
+        flex: 0 0 calc(100vw - 48px);
+        scroll-snap-align: center;
+      }
+      #catalogGrid.mobile-slider .catalog-card.is-hidden {
+        display: none !important;
+      }
+      .mobile-slider-controls.is-active {
+        display: flex;
+      }
+    }
+    select { color-scheme: dark; }
+  </style>
+</head>
+<body class="bg-[#111110] text-[#FAF9F6] font-body overflow-x-hidden">
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-transparent border-b border-transparent">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#hero" class="text-xl md:text-2xl font-heading font-bold tracking-tight">
+        <span class="text-[#FAF9F6]">BUDS</span><span class="text-[#F97316]"> MOTOR</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#motor" class="nav-link text-[#A8A49B] hover:text-[#FDBA74] transition-colors" data-section="motor">Motor</a>
+        <a href="#kredit" class="nav-link text-[#A8A49B] hover:text-[#FDBA74] transition-colors" data-section="kredit">Kredit</a>
+        <a href="#faq" class="nav-link text-[#A8A49B] hover:text-[#FDBA74] transition-colors" data-section="faq">FAQ</a>
+        <a href="#simulasi" class="nav-link text-[#A8A49B] hover:text-[#FDBA74] transition-colors" data-section="simulasi">Simulasi</a>
+      </div>
+      <a href="#simulasi" class="hidden md:inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-5 py-3 text-sm font-semibold text-white shadow-accent transition-all duration-300 hover:scale-105 hover:brightness-110 hover:shadow-[0_4px_20px_rgba(249,115,22,0.35)]">
+        Simulasi Kredit <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+      <button id="mobileMenuBtn" class="md:hidden w-11 h-11 rounded-xl border border-[#333129] text-[#A8A49B] flex items-center justify-center" aria-label="Buka menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== MOBILE MENU ===== -->
+  <div id="mobileOverlay" class="fixed inset-0 z-[60] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  <aside id="mobileDrawer" class="fixed top-0 right-0 z-[61] h-full w-[82%] max-w-sm bg-[#111110] border-l border-[#333129] translate-x-full transition-transform duration-300 p-6">
+    <div class="flex items-center justify-between mb-10">
+      <div class="text-xl font-heading font-bold"><span>MOTOR</span><span class="text-[#F97316]">ZONE</span></div>
+      <button id="mobileCloseBtn" class="w-10 h-10 rounded-xl border border-[#333129] text-[#FAF9F6] flex items-center justify-center" aria-label="Tutup menu">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+    <div class="flex flex-col gap-5 text-base font-medium">
+      <a href="#motor" class="mobile-link text-[#A8A49B] hover:text-[#FDBA74]">Motor</a>
+      <a href="#kredit" class="mobile-link text-[#A8A49B] hover:text-[#FDBA74]">Kredit</a>
+      <a href="#faq" class="mobile-link text-[#A8A49B] hover:text-[#FDBA74]">FAQ</a>
+      <a href="#simulasi" class="mobile-link text-[#A8A49B] hover:text-[#FDBA74]">Simulasi</a>
+      <a href="#simulasi" class="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-5 py-3 text-sm font-semibold text-white">Simulasi Kredit <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section id="hero" class="relative min-h-screen pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <div class="absolute top-28 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full bg-[#F97316]/[0.07] blur-[120px] pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="animate-on-scroll">
+          <span class="inline-flex items-center rounded-full border border-[#F97316]/30 bg-[#F97316]/5 px-4 py-2 text-sm text-[#FDBA74] mb-6">🏍️ Dealer Resmi Multi-Brand</span>
+          <h1 class="font-heading text-[42px] leading-[50px] md:text-[56px] md:leading-[64px] lg:text-[64px] lg:leading-[72px] font-bold tracking-[-0.025em] text-[#FAF9F6] mb-6">
+            Ride Your Dream,<br>Pilih Motor<br><span class="gradient-text">Terbaikmu</span>
+          </h1>
+          <p class="text-[#A8A49B] text-base md:text-lg leading-8 max-w-xl mb-8">Honda, Yamaha, Suzuki, Kawasaki, dan Vespa — semua tersedia di BUDS MOTOR. Lengkapi pilihan motor dulu lewat katalog, lalu lanjutkan simulasi kredit dengan DP mulai 10–15% dari harga OTR.</p>
+          <div class="flex flex-col sm:flex-row gap-4 mb-10">
+            <a href="#motor" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-6 py-4 text-[15px] font-semibold tracking-[0.01em] text-white shadow-accent transition-all duration-300 hover:scale-105 hover:brightness-110 hover:shadow-[0_4px_20px_rgba(249,115,22,0.35)]">Lihat Katalog <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            <a href="#simulasi" class="inline-flex items-center justify-center gap-2 rounded-xl border border-[#4A4738] px-6 py-4 text-[15px] font-semibold tracking-[0.01em] text-[#FAF9F6] transition-all duration-300 hover:scale-105 hover:border-[#F97316]/50 hover:bg-[#F97316]/5">Simulasi Kredit</a>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-[#A8A49B]">
+            <div><strong class="block text-[#FAF9F6] text-lg">500+</strong> Motor Tersedia</div>
+            <div><strong class="block text-[#FAF9F6] text-lg">5</strong> Brand Ternama</div>
+            <div><strong class="block text-[#FDBA74] text-lg">DP 10–15%</strong> Dari OTR</div>
+            <div><strong class="block text-[#FAF9F6] text-lg">3 Hari</strong> Proses</div>
+          </div>
+        </div>
+        <div class="relative animate-on-scroll" style="transition-delay:120ms">
+          <div class="absolute inset-0 bg-[#F97316]/10 blur-[80px] rounded-full"></div>
+          <div class="relative float-soft rounded-2xl border border-[#333129] bg-[#1C1B18] p-5 md:p-8 shadow-card">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="brand-panel active rounded-2xl border border-[#E31937]/40 bg-[#E31937]/10 p-5 transition-all duration-500" data-brand-color="#E31937">
+                <div class="w-14 h-14 rounded-full bg-white/95 p-2 flex items-center justify-center mb-6 shadow-sm"><img src="./public/assets/logos/honda.png" alt="Honda logo" class="max-h-full max-w-full object-contain"></div>
+                <p class="text-[#E31937] text-sm font-semibold">Honda</p>
+                <h3 class="text-2xl font-heading font-bold text-[#FAF9F6] mt-1">Vario</h3>
+              </div>
+              <div class="brand-panel rounded-2xl border border-[#333129] bg-[#003791]/10 p-5 transition-all duration-500" data-brand-color="#003791">
+                <div class="w-14 h-14 rounded-full bg-white/95 p-2 flex items-center justify-center mb-6 shadow-sm"><img src="./public/assets/logos/yamaha.png" alt="Yamaha logo" class="max-h-full max-w-full object-contain"></div>
+                <p class="text-[#6EA8FF] text-sm font-semibold">Yamaha</p>
+                <h3 class="text-2xl font-heading font-bold text-[#FAF9F6] mt-1">NMAX</h3>
+              </div>
+              <div class="brand-panel rounded-2xl border border-[#333129] bg-[#E60012]/10 p-5 transition-all duration-500" data-brand-color="#E60012">
+                <div class="w-14 h-14 rounded-full bg-white/95 p-2 flex items-center justify-center mb-6 shadow-sm"><img src="./public/assets/logos/suzuki.png" alt="Suzuki logo" class="max-h-full max-w-full object-contain"></div>
+                <p class="text-[#E60012] text-sm font-semibold">Suzuki</p>
+                <h3 class="text-2xl font-heading font-bold text-[#FAF9F6] mt-1">Satria</h3>
+              </div>
+              <div class="brand-panel rounded-2xl border border-[#333129] bg-[#00AAD4]/10 p-5 transition-all duration-500" data-brand-color="#00AAD4">
+                <div class="w-14 h-14 rounded-full bg-white/95 p-2 flex items-center justify-center mb-6 shadow-sm"><img src="./public/assets/logos/kawasaki.png" alt="Kawasaki logo" class="max-h-full max-w-full object-contain"></div>
+                <p class="text-[#00AAD4] text-sm font-semibold">Kawasaki</p>
+                <h3 class="text-2xl font-heading font-bold text-[#FAF9F6] mt-1">Ninja</h3>
+              </div>
+              <div class="brand-panel rounded-2xl border border-[#333129] bg-[#7FA53A]/10 p-5 transition-all duration-500 md:col-span-2" data-brand-color="#7FA53A">
+                <div class="w-14 h-14 rounded-full bg-white/95 p-2 flex items-center justify-center mb-6 shadow-sm"><img src="./public/assets/logos/vespa.png" alt="Vespa logo" class="max-h-full max-w-full object-contain"></div>
+                <p class="text-[#A8D05F] text-sm font-semibold">Vespa</p>
+                <h3 class="text-2xl font-heading font-bold text-[#FAF9F6] mt-1">Primavera</h3>
+              </div>
+            </div>
+            <div class="mt-5 rounded-2xl border border-[#333129] bg-[#23221E] p-5 flex items-center justify-between">
+              <div>
+                <p class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Promo Kredit</p>
+                <p class="text-[#FAF9F6] font-semibold mt-1">DP ringan + proses cepat</p>
+              </div>
+              <div class="w-12 h-12 rounded-xl bg-[#F97316]/10 text-[#F97316] flex items-center justify-center"><i data-lucide="badge-percent" class="w-6 h-6"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== KATALOG MOTOR ===== -->
+    <section id="motor" class="py-20 md:py-28 bg-[#0F0F0D]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10 animate-on-scroll">
+          <p class="text-[#F97316] text-xs font-semibold uppercase tracking-[0.1em] mb-4">KATALOG MOTOR</p>
+          <h2 class="font-heading text-3xl md:text-4xl leading-tight font-bold text-[#FAF9F6] mb-4">Pilih Brand, Lalu Pilih Kategori Motor</h2>
+          <p class="text-[#A8A49B] leading-7">Pilih motor berdasarkan brand dan kategori resmi. Semua DP dihitung otomatis 10% dari harga OTR.</p>
+        </div>
+        <div class="animate-on-scroll space-y-5 mb-8">
+          <div class="rounded-2xl border border-[#333129] bg-[#1C1B18]/70 p-4">
+            <div class="flex items-center gap-2 mb-3 px-1">
+              <i data-lucide="badge-check" class="w-4 h-4 text-[#F97316]"></i>
+              <p class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Langkah 1 · Pilih Brand</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3" id="brandFilters">
+              <button class="brand-filter rounded-2xl border border-[#333129] bg-[#1C1B18] p-5 text-left transition-all hover:border-[#E31937]/50 hover:bg-[#E31937]/5" data-filter="honda">
+                <span class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 p-2"><img src="./public/assets/logos/honda.png" alt="Honda logo" class="max-h-full max-w-full object-contain"></span>
+                <span class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Honda</span>
+                <span class="mt-2 block font-heading text-2xl font-bold text-[#FAF9F6]">Honda</span>
+                <span class="mt-1 block text-sm text-[#A8A49B]">Matic, Sport, Cub, EV</span>
+              </button>
+              <button class="brand-filter rounded-2xl border border-[#333129] bg-[#1C1B18] p-5 text-left transition-all hover:border-[#003791]/50 hover:bg-[#003791]/10" data-filter="yamaha">
+                <span class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 p-2"><img src="./public/assets/logos/yamaha.png" alt="Yamaha logo" class="max-h-full max-w-full object-contain"></span>
+                <span class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Yamaha</span>
+                <span class="mt-2 block font-heading text-2xl font-bold text-[#FAF9F6]">Yamaha</span>
+                <span class="mt-1 block text-sm text-[#A8A49B]">MAXI, Classy, Matic, Sport</span>
+              </button>
+              <button class="brand-filter rounded-2xl border border-[#333129] bg-[#1C1B18] p-5 text-left transition-all hover:border-[#E60012]/50 hover:bg-[#E60012]/5" data-filter="suzuki">
+                <span class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 p-2"><img src="./public/assets/logos/suzuki.png" alt="Suzuki logo" class="max-h-full max-w-full object-contain"></span>
+                <span class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Suzuki</span>
+                <span class="mt-2 block font-heading text-2xl font-bold text-[#FAF9F6]">Suzuki</span>
+                <span class="mt-1 block text-sm text-[#A8A49B]">Underbone, Scooter, Backbone</span>
+              </button>
+              <button class="brand-filter rounded-2xl border border-[#333129] bg-[#1C1B18] p-5 text-left transition-all hover:border-[#00AAD4]/50 hover:bg-[#00AAD4]/10" data-filter="kawasaki">
+                <span class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 p-2"><img src="./public/assets/logos/kawasaki.png" alt="Kawasaki logo" class="max-h-full max-w-full object-contain"></span>
+                <span class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Kawasaki</span>
+                <span class="mt-2 block font-heading text-2xl font-bold text-[#FAF9F6]">Kawasaki</span>
+                <span class="mt-1 block text-sm text-[#A8A49B]">Ninja, KLX, Dual Purpose, Off-road</span>
+              </button>
+              <button class="brand-filter rounded-2xl border border-[#333129] bg-[#1C1B18] p-5 text-left transition-all hover:border-[#7FA53A]/50 hover:bg-[#7FA53A]/10" data-filter="vespa">
+                <span class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 p-2"><img src="./public/assets/logos/vespa.png" alt="Vespa logo" class="max-h-full max-w-full object-contain"></span>
+                <span class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Vespa</span>
+                <span class="mt-2 block font-heading text-2xl font-bold text-[#FAF9F6]">Vespa</span>
+                <span class="mt-1 block text-sm text-[#A8A49B]">LX, Primavera, GTS, Elettrica</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="categoryPanel" class="hidden rounded-2xl border border-[#333129] bg-[#1C1B18]/70 p-4">
+            <div class="flex items-center justify-between gap-3 mb-3 px-1">
+              <div class="flex items-center gap-2">
+                <i data-lucide="list-filter" class="w-4 h-4 text-[#F97316]"></i>
+                <p class="text-xs uppercase tracking-[0.1em] text-[#78746A]">Langkah 2 · Pilih Kategori</p>
+              </div>
+              <button id="resetCatalogFilter" class="text-xs text-[#FDBA74] hover:underline">Ganti Brand</button>
+            </div>
+            <div id="typeFilters" class="flex gap-2 overflow-x-auto hide-scrollbar pb-1"></div>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-4 mb-6 text-sm text-[#A8A49B] animate-on-scroll">
+          <p><span id="catalogCount" class="text-[#FDBA74] font-semibold">0</span> motor ditampilkan</p>
+          <p id="catalogHint" class="hidden sm:block text-[#78746A]">Pilih brand terlebih dahulu untuk membuka katalog.</p>
+        </div>
+        <div id="catalogEmptyState" class="animate-on-scroll rounded-2xl border border-dashed border-[#333129] bg-[#1C1B18]/50 p-8 text-center mb-8">
+          <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#F97316]/10 text-[#F97316]">
+            <i data-lucide="mouse-pointer-click" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-heading text-xl font-semibold text-[#FAF9F6]">Pilih brand motor yang kamu minati</h3>
+          <p class="mt-2 text-sm text-[#A8A49B]">Katalog tidak ditampilkan sekaligus agar halaman lebih ringan dan pilihan user lebih fokus.</p>
+        </div>
+        <div id="mobileSliderControls" class="mobile-slider-controls hidden md:hidden items-center justify-between gap-3 mb-5 rounded-2xl border border-[#333129] bg-[#1C1B18]/80 p-3">
+          <button id="sliderPrev" type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#333129] bg-[#23221E] text-[#FAF9F6] active:scale-95">
+            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+          </button>
+          <div class="min-w-0 text-center">
+            <p id="sliderCounter" class="text-sm font-semibold text-[#FAF9F6]">1 / 1</p>
+            <div id="sliderDots" class="mt-2 flex items-center justify-center gap-1.5"></div>
+          </div>
+          <button id="sliderNext" type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#333129] bg-[#23221E] text-[#FAF9F6] active:scale-95">
+            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <div id="catalogGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
+      </div>
+    </section>
+
+    <!-- ===== INFO KREDIT RINGAN ===== -->
+    <section id="kredit" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="animate-on-scroll rounded-2xl border border-[#F97316]/20 bg-[#F97316]/5 p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div class="flex gap-5 items-start">
+            <div class="w-14 h-14 rounded-2xl bg-[#F97316]/10 text-[#F97316] flex items-center justify-center shrink-0"><i data-lucide="wallet" class="w-7 h-7"></i></div>
+            <p class="text-[#FAF9F6] text-lg md:text-xl font-heading font-semibold leading-8">Kredit Ringan Mulai DP 10% dari Harga OTR — Tenor 12-48 Bulan, proses cepat, dan cocok untuk matic, bebek, maupun sport.</p>
+          </div>
+          <a href="#simulasi" class="shrink-0 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-6 py-4 text-[15px] font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_4px_20px_rgba(249,115,22,0.35)]">Simulasi Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CARA BELI ===== -->
+    <section id="cara-beli" class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 animate-on-scroll">
+          <p class="text-[#F97316] text-xs font-semibold uppercase tracking-[0.1em] mb-4">CARA BELI</p>
+          <h2 class="font-heading text-3xl md:text-4xl leading-tight font-bold text-[#FAF9F6] mb-4">4 Langkah Mudah Bawa Motor Pulang</h2>
+          <p class="text-[#A8A49B] leading-7">Proses pembelian yang cepat dan tanpa ribet.</p>
+        </div>
+        <div class="relative grid md:grid-cols-4 gap-8">
+          <div class="hidden md:block absolute top-[54px] left-[12%] right-[12%] border-t border-dashed border-[#F97316]/30"></div>
+          <article class="animate-on-scroll relative text-center" style="transition-delay:0ms">
+            <div class="text-[#FDBA74] flex justify-center mb-4"><i data-lucide="search" class="w-7 h-7"></i></div>
+            <div class="mx-auto mb-5 w-16 h-16 rounded-full border-2 border-[#F97316]/40 bg-[#111110] text-[#F97316] flex items-center justify-center font-heading text-xl font-bold relative z-10">1</div>
+            <h3 class="text-[#FAF9F6] font-heading text-xl font-semibold mb-3">Pilih Motor</h3>
+            <p class="text-[#A8A49B] text-sm leading-6">Cari motor impianmu dari katalog kami, bisa langsung datang atau cek online.</p>
+          </article>
+          <article class="animate-on-scroll relative text-center" style="transition-delay:100ms">
+            <div class="text-[#FDBA74] flex justify-center mb-4"><i data-lucide="clipboard-list" class="w-7 h-7"></i></div>
+            <div class="mx-auto mb-5 w-16 h-16 rounded-full border-2 border-[#F97316]/40 bg-[#111110] text-[#F97316] flex items-center justify-center font-heading text-xl font-bold relative z-10">2</div>
+            <h3 class="text-[#FAF9F6] font-heading text-xl font-semibold mb-3">Isi Simulasi</h3>
+            <p class="text-[#A8A49B] text-sm leading-6">Gunakan form simulasi kredit di website ini untuk estimasi cicilan.</p>
+          </article>
+          <article class="animate-on-scroll relative text-center" style="transition-delay:200ms">
+            <div class="text-[#FDBA74] flex justify-center mb-4"><i data-lucide="credit-card" class="w-7 h-7"></i></div>
+            <div class="mx-auto mb-5 w-16 h-16 rounded-full border-2 border-[#F97316]/40 bg-[#111110] text-[#F97316] flex items-center justify-center font-heading text-xl font-bold relative z-10">3</div>
+            <h3 class="text-[#FAF9F6] font-heading text-xl font-semibold mb-3">Pengajuan & DP</h3>
+            <p class="text-[#A8A49B] text-sm leading-6">Sales kami akan menghubungi kamu untuk proses pengajuan leasing. Setelah nominal DP disepakati, akan ada survey ke rumah calon pembeli. Hasil approve atau tidak akan ditentukan berdasarkan penilaian kelayakan dari leasing. Jika disetujui, barulah motor diproses untuk dikirim atau diantar ke alamat tujuan.</p>
+          </article>
+          <article class="animate-on-scroll relative text-center" style="transition-delay:300ms">
+            <div class="text-[#FDBA74] flex justify-center mb-4"><i data-lucide="bike" class="w-7 h-7"></i></div>
+            <div class="mx-auto mb-5 w-16 h-16 rounded-full border-2 border-[#F97316]/40 bg-[#111110] text-[#F97316] flex items-center justify-center font-heading text-xl font-bold relative z-10">4</div>
+            <h3 class="text-[#FAF9F6] font-heading text-xl font-semibold mb-3">Motor Diantar</h3>
+            <p class="text-[#A8A49B] text-sm leading-6">Jika pengajuan disetujui, motor akan disiapkan dan bisa diambil di showroom atau diantar ke rumah sesuai area layanan.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONI ===== -->
+    <section class="py-20 md:py-28 bg-[#0F0F0D]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+          <p class="text-[#F97316] text-xs font-semibold uppercase tracking-[0.1em] mb-4">TESTIMONI</p>
+          <h2 class="font-heading text-3xl md:text-4xl leading-tight font-bold text-[#FAF9F6]">Kata Mereka Tentang Kami</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <article class="animate-on-scroll rounded-2xl border border-[#333129] bg-[#1C1B18] p-6 shadow-card transition-all duration-300 hover:scale-[1.03] hover:border-[#F97316]/30 hover:shadow-cardHover" style="transition-delay:0ms">
+            <div class="text-[#FBBF24] mb-4">★★★★★</div>
+            <p class="text-[#A8A49B] text-sm leading-7 mb-6">“Proses kreditnya gila cepat, pagi ajukan sore sudah acc! Motor NMAX saya dikirim gratis ke rumah. Pelayanan Agustin luar biasa ramah.”</p>
+            <div class="border-t border-[#333129] pt-5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#2A2924] flex items-center justify-center text-[#FDBA74] font-semibold">R</div><div><p class="text-[#FAF9F6] font-semibold">Rizky Firmansyah</p><p class="text-[#78746A] text-[13px]">Beli NMAX — Jakarta</p></div></div>
+          </article>
+          <article class="animate-on-scroll rounded-2xl border border-[#333129] bg-[#1C1B18] p-6 shadow-card transition-all duration-300 hover:scale-[1.03] hover:border-[#F97316]/30 hover:shadow-cardHover" style="transition-delay:100ms">
+            <div class="text-[#FBBF24] mb-4">★★★★★</div>
+            <p class="text-[#A8A49B] text-sm leading-7 mb-6">“Sudah 2 kali beli motor di sini. Pertama Beat buat istri, kedua Satria buat saya. Harga paling murah dibanding dealer lain.”</p>
+            <div class="border-t border-[#333129] pt-5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#2A2924] flex items-center justify-center text-[#FDBA74] font-semibold">A</div><div><p class="text-[#FAF9F6] font-semibold">Ahmad Fauzi</p><p class="text-[#78746A] text-[13px]">Beli Satria F150 — Bandung</p></div></div>
+          </article>
+          <article class="animate-on-scroll rounded-2xl border border-[#333129] bg-[#1C1B18] p-6 shadow-card transition-all duration-300 hover:scale-[1.03] hover:border-[#F97316]/30 hover:shadow-cardHover" style="transition-delay:200ms">
+            <div class="text-[#FBBF24] mb-4">★★★★★</div>
+            <p class="text-[#A8A49B] text-sm leading-7 mb-6">“Dari awal konsultasi sampai motor sampai rumah, semuanya dihandle dengan baik. Ninja 250 impian saya akhirnya terwujud lewat kredit ringan!”</p>
+            <div class="border-t border-[#333129] pt-5 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#2A2924] flex items-center justify-center text-[#FDBA74] font-semibold">D</div><div><p class="text-[#FAF9F6] font-semibold">Dinda Ayu</p><p class="text-[#78746A] text-[13px]">Beli Ninja 250 — Surabaya</p></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+          <p class="text-[#F97316] text-xs font-semibold uppercase tracking-[0.1em] mb-4">FAQ</p>
+          <h2 class="font-heading text-3xl md:text-4xl leading-tight font-bold text-[#FAF9F6]">Pertanyaan Umum</h2>
+        </div>
+        <div id="faqList" class="max-w-[800px] mx-auto space-y-4 animate-on-scroll"></div>
+      </div>
+    </section>
+
+    <!-- ===== FORM SIMULASI KREDIT ===== -->
+    <section id="simulasi" class="py-20 md:py-28 bg-[#0F0F0D]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 animate-on-scroll">
+          <p class="text-[#F97316] text-xs font-semibold uppercase tracking-[0.1em] mb-4">SIMULASI KREDIT</p>
+          <h2 class="font-heading text-3xl md:text-4xl leading-tight font-bold text-[#FAF9F6] mb-4">Hitung Estimasi Cicilanmu</h2>
+          <p class="text-[#A8A49B] leading-7">Gunakan tools cepat untuk gambaran cicilan, lalu kirim form agar sales membantu hitungan final.</p>
+        </div>
+
+        <div id="quickCreditTool" class="animate-on-scroll mb-8 rounded-2xl border border-[#F97316]/20 bg-[#F97316]/5 p-6 md:p-8 shadow-card">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 mb-6">
+            <div>
+              <p class="text-[#F97316] text-xs font-semibold uppercase tracking-[0.1em] mb-3">Tools Simulasi Kredit Cepat</p>
+              <h3 class="font-heading text-2xl font-bold text-[#FAF9F6]">Estimasi Cicilan Bulanan</h3>
+              <p class="mt-2 text-sm leading-6 text-[#A8A49B]">Simulasi ini hanya gambaran awal. Angka final tetap mengikuti kebijakan leasing, hasil survey, biaya admin/asuransi, dan approval calon pembeli.</p>
+            </div>
+            <a href="https://wa.me/6287776606664" target="_blank" class="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-5 py-3 text-sm font-semibold text-white transition-all hover:shadow-[0_4px_16px_rgba(37,211,102,0.25)]">Tanya Sales <i data-lucide="message-circle" class="w-4 h-4"></i></a>
+          </div>
+
+          <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="md:col-span-2">
+                <label for="calcMotor" class="block text-[#FAF9F6] text-sm font-medium mb-2">Pilih Motor</label>
+                <select id="calcMotor" class="w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10">
+                  <option value="">Pilih motor untuk simulasi...</option>
+                </select>
+              </div>
+              <div>
+                <label for="calcDpPercent" class="block text-[#FAF9F6] text-sm font-medium mb-2">DP (%)</label>
+                <input id="calcDpPercent" type="number" min="10" max="80" value="10" class="w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10">
+              </div>
+              <div>
+                <label for="calcTenor" class="block text-[#FAF9F6] text-sm font-medium mb-2">Tenor</label>
+                <select id="calcTenor" class="w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10">
+                  <option value="12">12 Bulan</option>
+                  <option value="24">24 Bulan</option>
+                  <option value="36" selected>36 Bulan</option>
+                  <option value="48">48 Bulan</option>
+                </select>
+              </div>
+              <div>
+                <label for="calcRate" class="block text-[#FAF9F6] text-sm font-medium mb-2">Estimasi Bunga / Tahun (%)</label>
+                <input id="calcRate" type="number" min="0" max="40" step="0.1" value="10" class="w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10">
+              </div>
+              <div>
+                <label for="calcAdmin" class="block text-[#FAF9F6] text-sm font-medium mb-2">Admin/Asuransi Estimasi</label>
+                <input id="calcAdmin" type="number" min="0" value="0" class="w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10">
+              </div>
+              <button id="calcButton" type="button" class="md:col-span-2 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-5 py-3 text-sm font-semibold text-white transition-all hover:shadow-accent">Hitung Estimasi <i data-lucide="calculator" class="w-4 h-4"></i></button>
+            </div>
+
+            <div class="rounded-2xl border border-[#333129] bg-[#1C1B18] p-5">
+              <p class="text-xs uppercase tracking-[0.1em] text-[#78746A] mb-4">Hasil Simulasi</p>
+              <div class="space-y-3 text-sm">
+                <div class="flex justify-between gap-4"><span class="text-[#A8A49B]">Harga OTR</span><strong id="calcOtr" class="text-[#FAF9F6] text-right">-</strong></div>
+                <div class="flex justify-between gap-4"><span class="text-[#A8A49B]">Estimasi DP</span><strong id="calcDpValue" class="text-[#FAF9F6] text-right">-</strong></div>
+                <div class="flex justify-between gap-4"><span class="text-[#A8A49B]">Pokok Pembiayaan</span><strong id="calcPrincipal" class="text-[#FAF9F6] text-right">-</strong></div>
+                <div class="flex justify-between gap-4"><span class="text-[#A8A49B]">Total Est. Bunga</span><strong id="calcInterest" class="text-[#FAF9F6] text-right">-</strong></div>
+                <div class="mt-4 rounded-xl border border-[#F97316]/20 bg-[#F97316]/10 p-4">
+                  <p class="text-xs uppercase tracking-[0.1em] text-[#FDBA74]">Estimasi Cicilan / Bulan</p>
+                  <p id="calcMonthly" class="mt-1 font-heading text-3xl font-bold text-[#FAF9F6]">-</p>
+                </div>
+              </div>
+              <p class="mt-4 text-xs leading-5 text-[#78746A]">Disclaimer: simulasi ini bukan penawaran final. Angsuran final dapat berubah mengikuti DP aktual, tenor, bunga leasing, biaya admin, asuransi, hasil survey rumah, dan approval leasing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-8 lg:gap-10 items-start">
+          <form id="creditForm" class="animate-on-scroll rounded-2xl border border-[#333129] bg-[#1C1B18] p-6 md:p-8 shadow-card" novalidate>
+            <div class="grid md:grid-cols-2 gap-5">
+              <div class="form-group"><label for="nama" class="block text-[#FAF9F6] text-sm font-medium mb-2">Nama *</label><input id="nama" name="nama" type="text" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] placeholder:text-[#78746A] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10" placeholder="Nama lengkap"></div>
+              <div class="form-group"><label for="email" class="block text-[#FAF9F6] text-sm font-medium mb-2">Email *</label><input id="email" name="email" type="email" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] placeholder:text-[#78746A] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10" placeholder="nama@email.com"></div>
+              <div class="form-group"><label for="phone" class="block text-[#FAF9F6] text-sm font-medium mb-2">No. Handphone *</label><input id="phone" name="phone" type="tel" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] placeholder:text-[#78746A] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10" placeholder="08xxxxxxxxxx"></div>
+              <div class="form-group"><label for="rencana" class="block text-[#FAF9F6] text-sm font-medium mb-2">Rencana Pembelian *</label><select id="rencana" name="rencana" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10"><option value="">Pilih rencana pembelian...</option><option>1-2 Minggu</option><option>3-4 Minggu</option><option>Diatas 1 Bulan</option></select></div>
+              <div class="form-group"><label for="motorSelect" class="block text-[#FAF9F6] text-sm font-medium mb-2">Informasi Pembelian *</label><select id="motorSelect" name="motor" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10"><option value="">Pilih tipe motor...</option></select></div>
+              <div class="form-group"><label for="dp" class="block text-[#FAF9F6] text-sm font-medium mb-2">Down Payment *</label><select id="dp" name="dp" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10"><option value="">Pilih range DP...</option><option>10% - 15% dari OTR</option><option>16% - 20% dari OTR</option><option>21% - 30% dari OTR</option><option>Di atas 30% dari OTR</option></select></div>
+              <div class="form-group"><label for="tenor" class="block text-[#FAF9F6] text-sm font-medium mb-2">Rencana Jumlah Tenor *</label><select id="tenor" name="tenor" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10"><option value="">Pilih tenor...</option><option>12 Bulan</option><option>24 Bulan</option><option>36 Bulan</option><option>48 Bulan</option></select></div>
+              <div class="form-group"><label for="provinsi" class="block text-[#FAF9F6] text-sm font-medium mb-2">Provinsi</label><input id="provinsi" name="provinsi" type="text" readonly value="DKI Jakarta" class="w-full cursor-not-allowed rounded-xl border border-[#333129] bg-[#23221E] px-4 py-3 text-[#78746A] outline-none"></div>
+              <div class="form-group"><label for="kota" class="block text-[#FAF9F6] text-sm font-medium mb-2">Kota *</label><select id="kota" name="kota" class="form-field w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10"><option value="">Pilih kota...</option><option>Jakarta Pusat</option><option>Jakarta Utara</option><option>Jakarta Barat</option><option>Jakarta Selatan</option><option>Jakarta Timur</option></select></div>
+              <div class="form-group"><label for="dealer" class="block text-[#FAF9F6] text-sm font-medium mb-2">Nama Dealer</label><input id="dealer" name="dealer" type="text" class="w-full rounded-xl border border-[#333129] bg-[#2A2924] px-4 py-3 text-[#FAF9F6] placeholder:text-[#78746A] outline-none transition-all focus:border-[#F97316]/50 focus:ring-4 focus:ring-[#F97316]/10" placeholder="Akan diisi sales"></div>
+            </div>
+            <button type="submit" class="mt-8 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-6 py-4 text-[15px] font-semibold text-white transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_4px_20px_rgba(249,115,22,0.35)]">Kirim Simulasi <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+          </form>
+          <aside class="animate-on-scroll rounded-2xl border border-[#333129] bg-[#1C1B18] p-6 md:p-8 shadow-card sticky top-24" style="transition-delay:120ms">
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-[#F97316]/20 to-[#EA580C]/20 flex items-center justify-center text-[#F97316] text-2xl mb-5"><i data-lucide="user-round" class="w-8 h-8"></i></div>
+            <p class="text-[#78746A] text-xs uppercase tracking-wider mb-2">Sales Anda</p>
+            <h3 class="text-[#FAF9F6] text-xl font-heading font-bold mb-3">Agustin Budianto</h3>
+            <p class="text-[#A8A49B] text-sm leading-6 mb-6">Siap membantu kamu dari konsultasi sampai motor sampai di rumah!</p>
+            <div class="border-t border-[#333129] pt-6 space-y-5">
+              <div><p class="text-[#78746A] text-xs mb-1">📱 WhatsApp (Langsung Chat)</p><a href="https://wa.me/6287776606664" target="_blank" class="text-[#FDBA74] font-medium hover:underline">+62 877-7660-6664</a></div>
+              <div><p class="text-[#78746A] text-xs mb-1">📞 Telepon</p><p class="text-[#A8A49B]">+62 877-7660-6664</p></div>
+              <div><p class="text-[#78746A] text-xs mb-1">📧 Email</p><p class="text-[#A8A49B]">info@budsmotor.id</p></div>
+              <div><p class="text-[#78746A] text-xs mb-1">📍 Dealer Tujuan</p><p class="text-[#A8A49B] text-sm">Provinsi: DKI Jakarta</p><p id="dealerCityText" class="text-[#78746A] text-sm">Kota sesuai pilihan form</p></div>
+              <div><p class="text-[#78746A] text-xs mb-1">🕐 Jam Operasional</p><p class="text-[#A8A49B] text-sm">Senin - Sabtu: 08:00-17:00</p><p class="text-[#A8A49B] text-sm">Minggu: 09:00-15:00</p></div>
+            </div>
+            <div class="border-t border-[#333129] mt-6 pt-6">
+              <a href="https://wa.me/6287776606664" target="_blank" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-5 py-4 text-white font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_4px_16px_rgba(37,211,102,0.25)]">💬 Chat WhatsApp Agustin</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-[#0D0D0B] border-t border-[#333129] py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div><div class="text-2xl font-heading font-bold mb-4"><span class="text-[#FAF9F6]">BUDS</span><span class="text-[#F97316]"> MOTOR</span></div><p class="text-[#78746A] text-sm leading-6">Dealer resmi Honda, Yamaha, Suzuki, dan Kawasaki. Harga terbaik, kredit ringan.</p></div>
+        <div><h3 class="text-[#FAF9F6] font-semibold text-sm mb-4">Brand</h3><div class="space-y-3 text-sm"><a href="#motor" class="block text-[#A8A49B] hover:text-[#FDBA74]">Honda</a><a href="#motor" class="block text-[#A8A49B] hover:text-[#FDBA74]">Yamaha</a><a href="#motor" class="block text-[#A8A49B] hover:text-[#FDBA74]">Suzuki</a><a href="#motor" class="block text-[#A8A49B] hover:text-[#FDBA74]">Kawasaki</a></div></div>
+        <div><h3 class="text-[#FAF9F6] font-semibold text-sm mb-4">Layanan</h3><div class="space-y-3 text-sm"><a href="#motor" class="block text-[#A8A49B] hover:text-[#FDBA74]">Katalog Motor</a><a href="#simulasi" class="block text-[#A8A49B] hover:text-[#FDBA74]">Simulasi Kredit</a><a href="#simulasi" class="block text-[#A8A49B] hover:text-[#FDBA74]">Tukar Tambah</a><a href="#cara-beli" class="block text-[#A8A49B] hover:text-[#FDBA74]">Antar ke Rumah</a></div></div>
+        <div><h3 class="text-[#FAF9F6] font-semibold text-sm mb-4">Sales & Kontak</h3><div class="space-y-3 text-sm"><p class="text-[#A8A49B]">Agustin Budianto</p><a href="https://wa.me/6287776606664" target="_blank" class="block text-[#FDBA74] hover:underline">+62 877-7660-6664</a><p class="text-[#A8A49B]">info@budsmotor.id</p></div></div>
+      </div>
+      <div class="border-t border-[#333129] pt-8 flex flex-col md:flex-row justify-between gap-4">
+        <p class="text-[#78746A] text-xs">Copyright © 2026 <a href="https://karlabs-dev.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-[#FDBA74] hover:underline">KAR LABS.DEV</a>. All rights reserved.</p>
+        <p class="text-[#78746A] text-xs">Honda, Yamaha, Suzuki, Kawasaki adalah merek terdaftar dari masing-masing perusahaan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== CHATBOT WIDGET ===== -->
+  <div id="chatbot" class="fixed bottom-6 right-6 z-50">
+    <button id="chatToggle" class="chat-pulse w-[60px] h-[60px] rounded-full bg-gradient-to-r from-[#F97316] to-[#EA580C] text-white flex items-center justify-center shadow-[0_4px_20px_rgba(249,115,22,0.35)] ring-4 ring-[#F97316]/30 transition-transform hover:scale-110" aria-label="Buka chatbot">
+      <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </button>
+    <div id="chatWindow" class="chat-window absolute bottom-20 right-0 w-[calc(100vw-48px)] max-w-[380px] md:w-[380px] rounded-2xl overflow-hidden border border-[#333129] bg-[#111110] shadow-chat">
+      <div class="h-14 px-4 flex items-center justify-between bg-gradient-to-r from-[#F97316] to-[#EA580C]">
+        <div class="flex items-center gap-3"><i data-lucide="message-circle" class="w-5 h-5 text-white"></i><div><p class="text-white font-semibold text-sm">BUDS MOTOR Assistant</p><p class="text-white/70 text-xs">Agustin Budianto</p></div></div>
+        <button id="chatClose" class="text-white/70 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="chatArea" class="max-h-[320px] min-h-[240px] overflow-y-auto bg-[#111110] p-4 space-y-3 hide-scrollbar">
+        <div class="chat-bubble-animate bg-[#2A2924] rounded-2xl rounded-bl-md p-3 max-w-[85%] text-[#FAF9F6] text-sm leading-6">Halo! 👋 Saya asisten BUDS MOTOR. Silakan pilih pertanyaan di bawah ini:</div>
+      </div>
+      <div id="quickReplies" class="p-3 bg-[#1C1B18] border-t border-[#333129] overflow-y-auto max-h-[200px] hide-scrollbar"></div>
+      <div class="p-3 bg-[#23221E] border-t border-[#333129] flex gap-2">
+        <input id="chatInput" type="text" class="flex-1 bg-[#2A2924] border border-[#333129] rounded-xl px-3 py-2 text-[#FAF9F6] text-sm placeholder:text-[#78746A] outline-none focus:border-[#F97316]/50" placeholder="Tulis pesan...">
+        <button id="chatSend" class="w-10 h-10 rounded-xl bg-[#F97316] text-white flex items-center justify-center hover:bg-[#EA580C]"><i data-lucide="send" class="w-4 h-4"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const WA_NUMBER = '6287776606664';
+
+    const motors = [
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda BeAT",
+            "model": "BeAT",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 19155000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-beat.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-beat.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda BeAT Street",
+            "model": "BeAT Street",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 20026000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-beat-street.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-beat-street.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Genio",
+            "model": "Genio",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 20250000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-genio.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-genio.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Scoopy",
+            "model": "Scoopy",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 23101000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-scoopy.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-scoopy.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Vario 125",
+            "model": "Vario 125",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 24560000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-vario-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-vario-125.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Vario 125 Street",
+            "model": "Vario 125 Street",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 26649000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-vario-125-street.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-vario-125-street.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Vario 160",
+            "model": "Vario 160",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 28375000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-vario-160.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-vario-160.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Stylo 160",
+            "model": "Stylo 160",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 29445000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-stylo-160.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-stylo-160.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda PCX 160",
+            "model": "PCX 160",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 34750000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-pcx-160.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-pcx-160.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda ADV160",
+            "model": "ADV160",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 37590000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-adv160.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-adv160.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Matic",
+            "color": "#E31937",
+            "name": "Honda Forza",
+            "model": "Forza",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 97950000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-forza.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-forza.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CB150 Verza",
+            "model": "CB150 Verza",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 24360000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-cb150-verza.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-cb150-verza.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda Sonic 150R",
+            "model": "Sonic 150R",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 28965000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-sonic-150r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-sonic-150r.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CB150R Streetfire",
+            "model": "CB150R Streetfire",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 34880000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-cb150r-streetfire.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-cb150r-streetfire.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CB150X",
+            "model": "CB150X",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 35220000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-cb150x.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-cb150x.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CRF150L",
+            "model": "CRF150L",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 37905000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-crf150l.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-crf150l.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CBR150R",
+            "model": "CBR150R",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 39270000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-cbr150r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-cbr150r.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CBR250RR",
+            "model": "CBR250RR",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 74785000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-cbr250rr.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-cbr250rr.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CRF250L",
+            "model": "CRF250L",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 91650000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-crf250l.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-crf250l.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda ST125 Dax",
+            "model": "ST125 Dax",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 83439000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-st125-dax.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-st125-dax.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda Monkey",
+            "model": "Monkey",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 88094000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-monkey.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-monkey.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Sport",
+            "color": "#E31937",
+            "name": "Honda CRF250 Rally",
+            "model": "CRF250 Rally",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 99300000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-crf250-rally.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-crf250-rally.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Cub",
+            "color": "#E31937",
+            "name": "Honda Revo",
+            "model": "Revo",
+            "category": "Cub",
+            "spec": "Cub / Bebek",
+            "price": 18085000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-revo.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-revo.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Cub",
+            "color": "#E31937",
+            "name": "Honda Supra X 125 FI",
+            "model": "Supra X 125 FI",
+            "category": "Cub",
+            "spec": "Cub / Bebek",
+            "price": 21500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-supra-x-125-fi.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-supra-x-125-fi.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Cub",
+            "color": "#E31937",
+            "name": "Honda GTR 150",
+            "model": "GTR 150",
+            "category": "Cub",
+            "spec": "Cub / Bebek",
+            "price": 27390000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-gtr-150.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-gtr-150.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Cub",
+            "color": "#E31937",
+            "name": "Honda Supercub C125",
+            "model": "Supercub C125",
+            "category": "Cub",
+            "spec": "Cub / Bebek",
+            "price": 80241000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-supercub-c125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-supercub-c125.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "Cub",
+            "color": "#E31937",
+            "name": "Honda CT125",
+            "model": "CT125",
+            "category": "Cub",
+            "spec": "Cub / Bebek",
+            "price": 82839000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-ct125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-ct125.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "EV",
+            "color": "#E31937",
+            "name": "Honda ICON e",
+            "model": "ICON e",
+            "category": "EV",
+            "spec": "Electric Vehicle",
+            "price": 28000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-icon-e.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-icon-e.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "EV",
+            "color": "#E31937",
+            "name": "Honda EM1 e and EM1 e PLUS",
+            "model": "EM1 e and EM1 e PLUS",
+            "category": "EV",
+            "spec": "Electric Vehicle",
+            "price": 40000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-em1-e-and-em1-e-plus.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-em1-e-and-em1-e-plus.png"
+      },
+      {
+            "brand": "honda",
+            "brandName": "Honda",
+            "type": "EV",
+            "color": "#E31937",
+            "name": "Honda CUV e and CUV e RoadSync Duo",
+            "model": "CUV e and CUV e RoadSync Duo",
+            "category": "EV",
+            "spec": "Electric Vehicle",
+            "price": 54450000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/honda-cuv-e-and-cuv-e-roadsync-duo.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "honda-cuv-e-and-cuv-e-roadsync-duo.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "MAXI",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Aerox 155",
+            "model": "Aerox 155",
+            "category": "MAXI",
+            "spec": "Automatic • MAXI Scooter",
+            "price": 28880000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-aerox-155.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-aerox-155.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "MAXI",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha NMAX 155",
+            "model": "NMAX 155",
+            "category": "MAXI",
+            "spec": "Automatic • MAXI Scooter",
+            "price": 32175000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-nmax-155.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-nmax-155.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "MAXI",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Lexi LX 155",
+            "model": "Lexi LX 155",
+            "category": "MAXI",
+            "spec": "Automatic • MAXI Scooter",
+            "price": 27350000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-lexi-lx-155.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-lexi-lx-155.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "MAXI",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Aerox Alpha",
+            "model": "Aerox Alpha",
+            "category": "MAXI",
+            "spec": "Automatic • MAXI Scooter",
+            "price": 30200000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-aerox-alpha.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-aerox-alpha.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "MAXI",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha NMAX",
+            "model": "NMAX",
+            "category": "MAXI",
+            "spec": "Automatic • MAXI Scooter",
+            "price": 34065000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-nmax.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-nmax.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "MAXI",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha XMAX 250",
+            "model": "XMAX 250",
+            "category": "MAXI",
+            "spec": "Automatic • MAXI Scooter",
+            "price": 69215000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-xmax-250.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-xmax-250.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Classy",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Grand Filano",
+            "model": "Grand Filano",
+            "category": "Classy",
+            "spec": "Automatic • Classy",
+            "price": 28315000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-grand-filano.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-grand-filano.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Classy",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Fazzio",
+            "model": "Fazzio",
+            "category": "Classy",
+            "spec": "Automatic • Classy",
+            "price": 22470000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-fazzio.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-fazzio.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Matic",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Gear Ultima",
+            "model": "Gear Ultima",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 20140000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-gear-ultima.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-gear-ultima.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Matic",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha FreeGo 125",
+            "model": "FreeGo 125",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 22865000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-freego-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-freego-125.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Matic",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Mio M3 125",
+            "model": "Mio M3 125",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 18705000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-mio-m3-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-mio-m3-125.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Matic",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha GEAR 125",
+            "model": "GEAR 125",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 19295000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-gear-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-gear-125.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Matic",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha X-Ride 125",
+            "model": "X-Ride 125",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 21135000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-x-ride-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-x-ride-125.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Matic",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Fino 125",
+            "model": "Fino 125",
+            "category": "Matic",
+            "spec": "Automatic • Skutik",
+            "price": 20400000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-fino-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-fino-125.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Sport",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha XSR 155",
+            "model": "XSR 155",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 39565000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-xsr-155.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-xsr-155.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Sport",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha R15",
+            "model": "R15",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 41500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-r15.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-r15.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Sport",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha R25",
+            "model": "R25",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 75550000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-r25.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-r25.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Sport",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha MT-25",
+            "model": "MT-25",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 65750000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-mt-25.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-mt-25.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Sport",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha MT-15",
+            "model": "MT-15",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 40515000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-mt-15.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-mt-15.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Sport",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Vixion 155",
+            "model": "Vixion 155",
+            "category": "Sport",
+            "spec": "Manual • Sport",
+            "price": 31050000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-vixion-155.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-vixion-155.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Offroad",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha WR155R",
+            "model": "WR155R",
+            "category": "Offroad",
+            "spec": "Off-Road / Competition",
+            "price": 40575000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-wr155r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-wr155r.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Offroad",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha YZ125X",
+            "model": "YZ125X",
+            "category": "Offroad",
+            "spec": "Off-Road / Competition",
+            "price": 97000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-yz125x.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-yz125x.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Offroad",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha YZ250X",
+            "model": "YZ250X",
+            "category": "Offroad",
+            "spec": "Off-Road / Competition",
+            "price": 120000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-yz250x.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-yz250x.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Offroad",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha YZ250F",
+            "model": "YZ250F",
+            "category": "Offroad",
+            "spec": "Off-Road / Competition",
+            "price": 129000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-yz250f.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-yz250f.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Offroad",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha YZ250FX",
+            "model": "YZ250FX",
+            "category": "Offroad",
+            "spec": "Off-Road / Competition",
+            "price": 124000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-yz250fx.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-yz250fx.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Moped",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha MX King 150",
+            "model": "MX King 150",
+            "category": "Moped",
+            "spec": "Moped / Bebek",
+            "price": 28725000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-mx-king-150.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-mx-king-150.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Moped",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Jupiter Z1",
+            "model": "Jupiter Z1",
+            "category": "Moped",
+            "spec": "Moped / Bebek",
+            "price": 22280000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-jupiter-z1.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-jupiter-z1.png"
+      },
+      {
+            "brand": "yamaha",
+            "brandName": "Yamaha",
+            "type": "Moped",
+            "color": "#003791",
+            "displayColor": "#6EA8FF",
+            "name": "Yamaha Vega Force",
+            "model": "Vega Force",
+            "category": "Moped",
+            "spec": "Moped / Bebek",
+            "price": 19900000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/yamaha-vega-force.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "yamaha-vega-force.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Underbone",
+            "color": "#E60012",
+            "name": "Suzuki Satria Pro",
+            "model": "Satria Pro",
+            "category": "Underbone",
+            "spec": "Underbone",
+            "price": 31300000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-satria-pro.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-satria-pro.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Scooter",
+            "color": "#E60012",
+            "name": "Suzuki Access 125",
+            "model": "Access 125",
+            "category": "Scooter",
+            "spec": "Automatic • Scooter",
+            "price": 26050000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-access-125.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-access-125.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Scooter",
+            "color": "#E60012",
+            "name": "Suzuki Burgman Street 125EX",
+            "model": "Burgman Street 125EX",
+            "category": "Scooter",
+            "spec": "Automatic • Scooter",
+            "price": 26843500,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-burgman-street-125ex.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-burgman-street-125ex.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Scooter",
+            "color": "#E60012",
+            "name": "Suzuki NEX II",
+            "model": "NEX II",
+            "category": "Scooter",
+            "spec": "Automatic • Scooter",
+            "price": 20480000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-nex-ii.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-nex-ii.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Scooter",
+            "color": "#E60012",
+            "name": "Suzuki NEX Crossover",
+            "model": "NEX Crossover",
+            "category": "Scooter",
+            "spec": "Automatic • Scooter",
+            "price": 21565000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-nex-crossover.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-nex-crossover.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Scooter",
+            "color": "#E60012",
+            "name": "Suzuki Address FI",
+            "model": "Address FI",
+            "category": "Scooter",
+            "spec": "Automatic • Scooter",
+            "price": 21735000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-address-fi.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-address-fi.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Backbone",
+            "color": "#E60012",
+            "name": "Suzuki VSTROM 250 SX",
+            "model": "VSTROM 250 SX",
+            "category": "Backbone",
+            "spec": "Manual • Backbone",
+            "price": 60848000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-vstrom-250-sx.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-vstrom-250-sx.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Backbone",
+            "color": "#E60012",
+            "name": "Suzuki GSX-R150",
+            "model": "GSX-R150",
+            "category": "Backbone",
+            "spec": "Manual • Backbone",
+            "price": 36100000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-gsx-r150.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-gsx-r150.png"
+      },
+      {
+            "brand": "suzuki",
+            "brandName": "Suzuki",
+            "type": "Backbone",
+            "color": "#E60012",
+            "name": "Suzuki GSX-S150",
+            "model": "GSX-S150",
+            "category": "Backbone",
+            "spec": "Manual • Backbone",
+            "price": 32620000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/suzuki-gsx-s150.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "suzuki-gsx-s150.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Ninja",
+            "color": "#00AAD4",
+            "name": "Kawasaki Ninja 250",
+            "model": "Ninja 250",
+            "category": "Ninja",
+            "spec": "Manual • Ninja",
+            "price": 70200000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-ninja-250.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-ninja-250.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Ninja",
+            "color": "#00AAD4",
+            "name": "Kawasaki Ninja ZX-25R",
+            "model": "Ninja ZX-25R",
+            "category": "Ninja",
+            "spec": "Manual • Ninja",
+            "price": 113100000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-ninja-zx-25r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-ninja-zx-25r.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Ninja",
+            "color": "#00AAD4",
+            "name": "Kawasaki Ninja ZX-4RR",
+            "model": "Ninja ZX-4RR",
+            "category": "Ninja",
+            "spec": "Manual • Ninja",
+            "price": 248000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-ninja-zx-4rr.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-ninja-zx-4rr.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Ninja",
+            "color": "#00AAD4",
+            "name": "Kawasaki Ninja ZX-6R",
+            "model": "Ninja ZX-6R",
+            "category": "Ninja",
+            "spec": "Manual • Ninja",
+            "price": 309000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-ninja-zx-6r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-ninja-zx-6r.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Ninja",
+            "color": "#00AAD4",
+            "name": "Kawasaki Ninja ZX-10R",
+            "model": "Ninja ZX-10R",
+            "category": "Ninja",
+            "spec": "Manual • Ninja",
+            "price": 572200000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-ninja-zx-10r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-ninja-zx-10r.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Ninja",
+            "color": "#00AAD4",
+            "name": "Kawasaki Ninja H2",
+            "model": "Ninja H2",
+            "category": "Ninja",
+            "spec": "Manual • Ninja",
+            "price": 890500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-ninja-h2.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-ninja-h2.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "KLX Supermoto",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX150SM",
+            "model": "KLX150SM",
+            "category": "KLX Supermoto",
+            "spec": "Manual • KLX Supermoto",
+            "price": 39100000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx-150sm.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx-150sm.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "KLX Supermoto",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX150SM SE",
+            "model": "KLX150SM SE",
+            "category": "KLX Supermoto",
+            "spec": "Manual • KLX Supermoto",
+            "price": 41500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx-150sm-se.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx-150sm-se.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "KLX Supermoto",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX230SM",
+            "model": "KLX230SM",
+            "category": "KLX Supermoto",
+            "spec": "Manual • KLX Supermoto",
+            "price": 57500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx-230sm.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx-230sm.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 150",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX150 S",
+            "model": "KLX150 S",
+            "category": "Dual Purpose 150",
+            "spec": "Manual • Dual Purpose 150",
+            "price": 35000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx-klx150-s.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx-klx150-s.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 150",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX150",
+            "model": "KLX150",
+            "category": "Dual Purpose 150",
+            "spec": "Manual • Dual Purpose 150",
+            "price": 38600000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx150.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx150.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 150",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX150 SE",
+            "model": "KLX150 SE",
+            "category": "Dual Purpose 150",
+            "spec": "Manual • Dual Purpose 150",
+            "price": 39100000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx150-se.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx150-se.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 230-250",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX SHERPA",
+            "model": "KLX SHERPA",
+            "category": "Dual Purpose 230-250",
+            "spec": "Manual • Dual Purpose 230-250",
+            "price": 59900000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx230-sherpa.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx230-sherpa.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 230-250",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX230",
+            "model": "KLX230",
+            "category": "Dual Purpose 230-250",
+            "spec": "Manual • Dual Purpose 230-250",
+            "price": 57600000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx230.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx230.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 230-250",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX250",
+            "model": "KLX250",
+            "category": "Dual Purpose 230-250",
+            "spec": "Manual • Dual Purpose 230-250",
+            "price": 78100000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx250.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx250.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Dual Purpose 230-250",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX230 DF",
+            "model": "KLX230 DF",
+            "category": "Dual Purpose 230-250",
+            "spec": "Manual • Dual Purpose 230-250",
+            "price": 66200000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx230-df.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx230-df.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Off-road",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX110R",
+            "model": "KLX110R",
+            "category": "Off-road",
+            "spec": "Manual • Off-road",
+            "price": 28100000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx110r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx110r.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Off-road",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX140R",
+            "model": "KLX140R",
+            "category": "Off-road",
+            "spec": "Manual • Off-road",
+            "price": 41800000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx140r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx140r.png"
+      },
+      {
+            "brand": "kawasaki",
+            "brandName": "Kawasaki",
+            "type": "Off-road",
+            "color": "#00AAD4",
+            "name": "Kawasaki KLX230R",
+            "model": "KLX230R",
+            "category": "Off-road",
+            "spec": "Manual • Off-road",
+            "price": 52300000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/kawasaki-klx230r.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "kawasaki-klx230r.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "LX",
+            "color": "#7FA53A",
+            "name": "Vespa LX 150 I-GET",
+            "model": "LX 150 I-GET",
+            "category": "LX",
+            "spec": "Automatic • LX",
+            "price": 46500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-lx150-i-get.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-lx150-i-get.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "Primavera",
+            "color": "#7FA53A",
+            "name": "Vespa Primavera 180 I-GET ABS",
+            "model": "Primavera 180 I-GET ABS",
+            "category": "Primavera",
+            "spec": "Automatic • Primavera",
+            "price": 55000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-primavera-180-i-get-abs.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-primavera-180-i-get-abs.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "Primavera",
+            "color": "#7FA53A",
+            "name": "Vespa Primavera S 180 I-GET ABS",
+            "model": "Primavera S 180 I-GET ABS",
+            "category": "Primavera",
+            "spec": "Automatic • Primavera",
+            "price": 57500000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-primavera-s-180-i-get-abs.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-primavera-s-180-i-get-abs.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "GTS",
+            "color": "#7FA53A",
+            "name": "Vespa GTS Classic 150 I-GET ABS",
+            "model": "GTS Classic 150 I-GET ABS",
+            "category": "GTS",
+            "spec": "Automatic • GTS",
+            "price": 75000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-gts-classic-150-i-get-abs.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-gts-classic-150-i-get-abs.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "GTS",
+            "color": "#7FA53A",
+            "name": "Vespa GTS Super Tech 250",
+            "model": "GTS Super Tech 250",
+            "category": "GTS",
+            "spec": "Automatic • GTS",
+            "price": 97000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-gts-super-tech-250.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-gts-super-tech-250.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "GTS",
+            "color": "#7FA53A",
+            "name": "Vespa GTV",
+            "model": "GTV",
+            "category": "GTS",
+            "spec": "Automatic • GTS",
+            "price": 177000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-gtv.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-gtv.png"
+      },
+      {
+            "brand": "vespa",
+            "brandName": "Vespa",
+            "type": "Elettrica",
+            "color": "#7FA53A",
+            "name": "Vespa Elettrica",
+            "model": "Elettrica",
+            "category": "Elettrica",
+            "spec": "Automatic • Elettrica",
+            "price": 198000000,
+            "stock": "Ready",
+            "image": "./public/assets/motors/vespa-elettrica.png",
+            "source": "",
+            "imageStatus": "user-image",
+            "requiredFilename": "vespa-elettrica.png"
+      }
+];
+
+    const faqs = [
+      ['Apakah BUDS MOTOR dealer resmi?', 'Ya, BUDS MOTOR adalah dealer resmi untuk Honda, Yamaha, Suzuki, dan Kawasaki. Semua motor yang kami jual bergaransi resmi pabrikan.'],
+      ['Berapa DP minimum untuk kredit motor?', 'DP mulai dari 10% harga OTR motor yang dipilih. Besaran DP akan mempengaruhi cicilan bulanan. Gunakan form simulasi kredit di website ini untuk mendapatkan estimasi yang lebih sesuai.'],
+      ['Berapa lama proses pengajuan kredit?', 'Rata-rata 1 hari kerja setelah dokumen lengkap dan proses survey rumah selesai. Hasil approve tetap mengikuti penilaian kelayakan dari leasing seperti FIF, Adira, dan OTO.'],
+      ['Tenor kredit tersedia berapa bulan?', 'Tenor tersedia mulai 12, 24, 36, hingga 48 bulan. Semakin panjang tenor, cicilan per bulan semakin ringan.'],
+      ['Apakah bisa tukar tambah motor lama?', 'Bisa! Kami menerima tukar tambah dengan harga penawaran yang kompetitif. Motor lama akan dinilai oleh tim kami secara transparan.'],
+      ['Bagaimana jika motor bermasalah?', 'Semua motor bergaransi resmi. Kamu bisa langsung ke bengkel resmi terdekat atau hubungi sales kami untuk bantu koordinasi.']
+    ];
+
+
+    const formatRupiah = (value) => `Rp ${Number(value).toLocaleString('id-ID')}`;
+    const parseRupiah = (value) => Number(String(value).replace(/[^\d]/g, '')) || 0;
+    motors.forEach((motor) => {
+      motor.dp = formatRupiah(Math.round(parseRupiah(motor.price) * 0.1));
+    });
+
+    // --- Render Static Data ---
+    const formatIDR = value => new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      maximumFractionDigits: 0
+    }).format(value).replace(/\s/g, ' ');
+
+    const getDpValue = price => Math.round(price * 0.1);
+
+    const getUniqueTypes = brand => {
+      const filtered = brand === 'all' ? motors : motors.filter(motor => motor.brand === brand);
+      return [...new Set(filtered.map(motor => motor.type))];
+    };
+
+    // --- Render Static Data ---
+    const renderCatalog = () => {
+      const grid = document.querySelector('#catalogGrid');
+      const count = document.querySelector('#catalogCount');
+      grid.innerHTML = motors.map((motor, index) => {
+        const displayColor = motor.displayColor || motor.color;
+        const dpValue = getDpValue(motor.price);
+        return `
+          <article data-brand="${motor.brand}" data-type="${motor.type}" class="catalog-card animate-on-scroll rounded-2xl border border-[#333129] bg-[#1C1B18] overflow-hidden shadow-card transition-all duration-300 hover:scale-[1.03] hover:border-[#F97316]/30 hover:shadow-cardHover" style="transition-delay:${(index % 3) * 70}ms">
+            <div class="catalog-image-wrap relative flex items-center justify-center p-5 overflow-hidden" style="background: radial-gradient(circle at 50% 45%, ${motor.color}24, transparent 55%), linear-gradient(135deg, ${motor.color}14, #1C1B18);">
+              <div class="absolute top-4 left-4 z-10 inline-flex rounded-full border border-[#333129] bg-[#111110]/70 px-3 py-1 text-[11px] font-semibold text-[#A8A49B] backdrop-blur">${motor.type}</div>
+              <img class="catalog-image relative z-[1]" src="${motor.image}" alt="${motor.name}" loading="lazy" decoding="async" onerror="this.classList.add('is-broken')">
+              <div class="catalog-image-fallback relative z-[1] h-full w-full min-h-[170px] flex-col items-center justify-center text-center">
+                <div class="mx-auto mb-4 w-16 h-16 rounded-full flex items-center justify-center" style="background:${motor.color}1A; color:${displayColor};"><i data-lucide="bike" class="w-8 h-8"></i></div>
+                <p class="font-heading text-2xl font-bold" style="color:${displayColor}; opacity:.75;">${motor.model}</p>
+                <p class="mt-2 text-xs text-[#78746A]">Gambar referensi tidak termuat</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center justify-between gap-3 mb-4">
+                <span class="inline-flex rounded-full px-3 py-1 text-xs font-semibold" style="background:${motor.color}1A; color:${displayColor};">${motor.brandName}</span>
+                <span class="inline-flex items-center gap-1 rounded-full ${motor.stock === 'Ready' ? 'bg-[#22C55E]/10 text-[#22C55E]' : 'bg-[#F97316]/10 text-[#FDBA74]'} px-3 py-1 text-xs font-semibold"><span class="h-1.5 w-1.5 rounded-full ${motor.stock === 'Ready' ? 'bg-[#22C55E]' : 'bg-[#F97316]'}"></span>${motor.stock}</span>
+              </div>
+              <p class="mb-2 text-xs uppercase tracking-[0.1em] text-[#78746A]">${motor.category}</p>
+              <h3 class="font-heading text-2xl font-semibold text-[#FAF9F6] mb-2">${motor.name}</h3>
+              <p class="text-[#A8A49B] text-sm mb-4">${motor.spec}</p>
+              <div class="grid grid-cols-2 gap-3 mb-5">
+                <div class="rounded-xl border border-[#333129] bg-[#23221E] p-3">
+                  <p class="text-[11px] uppercase tracking-[0.1em] text-[#78746A]">Harga OTR</p>
+                  <p class="text-[#FDBA74] font-bold text-base mt-1">${formatIDR(motor.price)}</p>
+                </div>
+                <div class="rounded-xl border border-[#333129] bg-[#23221E] p-3">
+                  <p class="text-[11px] uppercase tracking-[0.1em] text-[#78746A]">DP 10%</p>
+                  <p class="text-[#FAF9F6] font-bold text-base mt-1">${formatIDR(dpValue)}</p>
+                </div>
+              </div>
+              <a href="#simulasi" data-motor="${motor.name}" data-price="${motor.price}" data-dp="${formatIDR(dpValue)}" class="simulate-btn w-full inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#F97316] to-[#EA580C] px-5 py-3 text-white text-sm font-semibold transition-all hover:shadow-accent">Pilih & Simulasi Kredit <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+          </article>`;
+      }).join('');
+      if (count) count.textContent = motors.length;
+    };
+
+    const renderMotorOptions = () => {
+      const select = document.querySelector('#motorSelect');
+      select.innerHTML += motors.map(m => `<option>${m.name} - DP 10% ${formatIDR(getDpValue(m.price))}</option>`).join('') + '<option>Belum tahu / Konsultasi</option>';
+    };
+
+    const renderCalculatorOptions = () => {
+      const select = document.querySelector('#calcMotor');
+      if (!select) return;
+      select.innerHTML = '<option value="">Pilih motor untuk simulasi...</option>' + motors.map(m => `<option value="${m.name}">${m.name} — ${formatIDR(m.price)}</option>`).join('');
+    };
+
+    const renderFaqs = () => {
+      const faqList = document.querySelector('#faqList');
+      faqList.innerHTML = faqs.map(([question, answer]) => `
+        <div class="faq-item rounded-2xl border border-[#333129] bg-[#1C1B18] overflow-hidden transition-colors duration-300">
+          <button class="faq-question w-full flex items-center justify-between gap-4 p-5 text-left text-[#FAF9F6] font-medium">
+            <span>${question}</span>
+            <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 text-[#A8A49B] transition-all duration-300 shrink-0"></i>
+          </button>
+          <div class="faq-answer overflow-hidden max-h-0 transition-[max-height] duration-400 ease-in-out">
+            <p class="px-5 pb-5 text-[#A8A49B] leading-7">${answer}</p>
+          </div>
+        </div>`).join('');
+    };
+
+    // --- Smooth Scroll ---
+    const initSmoothScroll = () => {
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', e => {
+          const targetId = link.getAttribute('href');
+          const target = document.querySelector(targetId);
+          if (!target) return;
+          e.preventDefault();
+          const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          closeMobileMenu();
+        });
+      });
+    };
+
+    // --- Navbar Scroll Effect ---
+    const initNavbarScroll = () => {
+      const navbar = document.querySelector('#navbar');
+      const onScroll = () => {
+        navbar.classList.toggle('bg-[#111110]/90', window.scrollY > 50);
+        navbar.classList.toggle('backdrop-blur-md', window.scrollY > 50);
+        navbar.classList.toggle('border-[#333129]', window.scrollY > 50);
+        navbar.classList.toggle('border-transparent', window.scrollY <= 50);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    };
+
+    // --- Mobile Menu ---
+    const openMobileMenu = () => {
+      document.querySelector('#mobileOverlay').classList.remove('opacity-0', 'pointer-events-none');
+      document.querySelector('#mobileDrawer').classList.remove('translate-x-full');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMobileMenu = () => {
+      document.querySelector('#mobileOverlay').classList.add('opacity-0', 'pointer-events-none');
+      document.querySelector('#mobileDrawer').classList.add('translate-x-full');
+      document.body.style.overflow = '';
+    };
+    const initMobileMenu = () => {
+      document.querySelector('#mobileMenuBtn').addEventListener('click', openMobileMenu);
+      document.querySelector('#mobileCloseBtn').addEventListener('click', closeMobileMenu);
+      document.querySelector('#mobileOverlay').addEventListener('click', closeMobileMenu);
+      document.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+    };
+
+    // --- Scroll Animations ---
+    const initScrollAnimations = () => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.2 });
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    };
+
+    // --- FAQ Accordion ---
+    const initFaqAccordion = () => {
+      document.querySelectorAll('.faq-item').forEach(item => {
+        const button = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const chevron = item.querySelector('.faq-chevron');
+        button.addEventListener('click', () => {
+          const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+          answer.style.maxHeight = isOpen ? '0px' : `${answer.scrollHeight}px`;
+          item.classList.toggle('border-[#F97316]/30', !isOpen);
+          item.classList.toggle('border-[#333129]', isOpen);
+          chevron.classList.toggle('rotate-180', !isOpen);
+          chevron.classList.toggle('text-[#F97316]', !isOpen);
+        });
+      });
+    };
+
+    // --- Quick Credit Calculator ---
+    const initQuickCreditCalculator = () => {
+      const motorSelect = document.querySelector('#calcMotor');
+      const dpPercent = document.querySelector('#calcDpPercent');
+      const tenor = document.querySelector('#calcTenor');
+      const rate = document.querySelector('#calcRate');
+      const admin = document.querySelector('#calcAdmin');
+      const button = document.querySelector('#calcButton');
+
+      const output = {
+        otr: document.querySelector('#calcOtr'),
+        dp: document.querySelector('#calcDpValue'),
+        principal: document.querySelector('#calcPrincipal'),
+        interest: document.querySelector('#calcInterest'),
+        monthly: document.querySelector('#calcMonthly')
+      };
+
+      if (!motorSelect || !button) return;
+
+      const getSelectedMotor = () => motors.find(motor => motor.name === motorSelect.value);
+
+      const calculate = () => {
+        const selected = getSelectedMotor();
+        if (!selected) {
+          Object.values(output).forEach(el => { if (el) el.textContent = '-'; });
+          return null;
+        }
+
+        const price = Number(selected.price || 0);
+        const dpRate = Math.min(Math.max(Number(dpPercent.value || 10), 0), 80) / 100;
+        const tenorMonth = Number(tenor.value || 36);
+        const annualRate = Math.max(Number(rate.value || 0), 0) / 100;
+        const adminCost = Math.max(Number(admin.value || 0), 0);
+
+        const dpValue = Math.round(price * dpRate);
+        const principal = Math.max(price - dpValue + adminCost, 0);
+        const totalInterest = Math.round(principal * annualRate * (tenorMonth / 12));
+        const monthly = Math.round((principal + totalInterest) / tenorMonth);
+
+        output.otr.textContent = formatIDR(price);
+        output.dp.textContent = formatIDR(dpValue);
+        output.principal.textContent = formatIDR(principal);
+        output.interest.textContent = formatIDR(totalInterest);
+        output.monthly.textContent = formatIDR(monthly);
+
+        return { selected, dpValue, monthly, tenorMonth };
+      };
+
+      const syncToLeadForm = result => {
+        if (!result) return;
+        const leadMotorSelect = document.querySelector('#motorSelect');
+        const leadDpSelect = document.querySelector('#dp');
+        const leadTenorSelect = document.querySelector('#tenor');
+
+        if (leadMotorSelect) {
+          const wanted = `${result.selected.name} - DP 10% ${formatIDR(getDpValue(result.selected.price))}`;
+          const option = Array.from(leadMotorSelect.options).find(opt => opt.textContent === wanted);
+          if (option) leadMotorSelect.value = option.textContent;
+        }
+
+        if (leadDpSelect) {
+          const dpPct = Number(dpPercent.value || 10);
+          if (dpPct <= 15) leadDpSelect.value = '10% - 15% dari OTR';
+          else if (dpPct <= 20) leadDpSelect.value = '16% - 20% dari OTR';
+          else if (dpPct <= 30) leadDpSelect.value = '21% - 30% dari OTR';
+          else leadDpSelect.value = 'Di atas 30% dari OTR';
+        }
+
+        if (leadTenorSelect) {
+          const tenorText = `${result.tenorMonth} Bulan`;
+          const tenorOption = Array.from(leadTenorSelect.options).find(opt => opt.textContent === tenorText);
+          if (tenorOption) leadTenorSelect.value = tenorText;
+        }
+      };
+
+      button.addEventListener('click', () => syncToLeadForm(calculate()));
+      [motorSelect, dpPercent, tenor, rate, admin].forEach(input => {
+        input.addEventListener('input', calculate);
+        input.addEventListener('change', calculate);
+      });
+
+      document.addEventListener('click', event => {
+        const simulateButton = event.target.closest('.simulate-btn');
+        if (!simulateButton) return;
+        const motorName = simulateButton.dataset.motor;
+        const selected = motors.find(motor => motor.name === motorName);
+        if (!selected) return;
+
+        motorSelect.value = selected.name;
+        dpPercent.value = 10;
+        const result = calculate();
+        syncToLeadForm(result);
+      });
+    };
+
+    // --- Form Simulasi Kredit ---
+    const setError = (field, message = '') => {
+      const group = field.closest('.form-group');
+      let error = group.querySelector('.error-message');
+      if (!error) {
+        error = document.createElement('p');
+        error.className = 'error-message text-[#EF4444] text-xs mt-1';
+        group.appendChild(error);
+      }
+      error.textContent = message;
+      field.classList.toggle('border-[#EF4444]/50', !!message);
+      field.classList.toggle('border-[#333129]', !message);
+    };
+
+    const initCreditForm = () => {
+      const form = document.querySelector('#creditForm');
+      const requiredFields = ['nama', 'email', 'phone', 'rencana', 'motorSelect', 'dp', 'tenor', 'kota'].map(id => document.querySelector(`#${id}`));
+      const citySelect = document.querySelector('#kota');
+      citySelect.addEventListener('change', () => {
+        document.querySelector('#dealerCityText').textContent = citySelect.value || 'Kota sesuai pilihan form';
+      });
+
+      document.querySelectorAll('.simulate-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelector('#motorSelect').value = btn.dataset.motor;
+        });
+      });
+
+      requiredFields.forEach(field => {
+        field.addEventListener('input', () => setError(field));
+        field.addEventListener('change', () => setError(field));
+      });
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        let valid = true;
+        requiredFields.forEach(field => {
+          if (!field.value.trim()) {
+            setError(field, 'Wajib diisi');
+            valid = false;
+          }
+        });
+
+        const email = document.querySelector('#email');
+        if (email.value.trim() && !/^\S+@\S+\.\S+$/.test(email.value.trim())) {
+          setError(email, 'Format email tidak valid');
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        const data = Object.fromEntries(new FormData(form).entries());
+        const dealer = data.dealer?.trim() || '-';
+        const message = `🏍️ *SIMULASI KREDIT BUDS MOTOR*\n\nNama: ${data.nama}\nEmail: ${data.email}\nNo. HP: ${data.phone}\n\nRencana Pembelian: ${data.rencana}\nTipe Motor: ${data.motor}\nDown Payment: ${data.dp}\nTenor: ${data.tenor}\n\nProvinsi: DKI Jakarta\nKota: ${data.kota}\nNama Dealer: ${dealer}\n\nMohon info estimasi cicilan untuk motor di atas.\nTerima kasih`;
+        window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+      });
+    };
+
+    // --- Active Nav Link ---
+    const initActiveNavLink = () => {
+      const sections = ['brand', 'motor', 'kredit', 'faq', 'simulasi'].map(id => document.querySelector(`#${id}`));
+      const navLinks = document.querySelectorAll('.nav-link');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          navLinks.forEach(link => {
+            const active = link.dataset.section === entry.target.id;
+            link.classList.toggle('text-[#FDBA74]', active);
+            link.classList.toggle('text-[#A8A49B]', !active);
+          });
+        });
+      }, { rootMargin: '-40% 0px -50% 0px', threshold: 0.01 });
+      sections.forEach(section => section && observer.observe(section));
+    };
+
+    // --- Filter Tabs Katalog ---
+    const initCatalogFilter = () => {
+      const brandTabs = document.querySelectorAll('.brand-filter');
+      const typeFilters = document.querySelector('#typeFilters');
+      const categoryPanel = document.querySelector('#categoryPanel');
+      const emptyState = document.querySelector('#catalogEmptyState');
+      const resetButton = document.querySelector('#resetCatalogFilter');
+      const count = document.querySelector('#catalogCount');
+      const hint = document.querySelector('#catalogHint');
+      const grid = document.querySelector('#catalogGrid');
+      const mobileControls = document.querySelector('#mobileSliderControls');
+      const prevButton = document.querySelector('#sliderPrev');
+      const nextButton = document.querySelector('#sliderNext');
+      const sliderCounter = document.querySelector('#sliderCounter');
+      const sliderDots = document.querySelector('#sliderDots');
+
+      let selectedBrand = null;
+      let selectedType = null;
+
+      const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+
+      const visibleCards = () => Array.from(document.querySelectorAll('.catalog-card')).filter(card => card.style.display !== 'none' && !card.classList.contains('is-hidden'));
+
+      const setCount = value => {
+        if (count) count.textContent = value;
+      };
+
+      const setHint = text => {
+        if (hint) hint.textContent = text;
+      };
+
+      const getSliderIndex = () => {
+        const cards = visibleCards();
+        if (!cards.length || !grid) return 0;
+        const gridCenter = grid.scrollLeft + grid.clientWidth / 2;
+        let nearestIndex = 0;
+        let nearestDistance = Infinity;
+        cards.forEach((card, index) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const distance = Math.abs(cardCenter - gridCenter);
+          if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nearestIndex = index;
+          }
+        });
+        return nearestIndex;
+      };
+
+      const updateSliderUI = () => {
+        const cards = visibleCards();
+        const total = cards.length;
+        const active = total ? getSliderIndex() : 0;
+
+        if (sliderCounter) sliderCounter.textContent = total ? `${active + 1} / ${total}` : '0 / 0';
+        if (sliderDots) {
+          sliderDots.innerHTML = cards.map((_, index) => `<span class="slider-dot ${index === active ? 'is-active' : ''}"></span>`).join('');
+        }
+
+        if (mobileControls) {
+          mobileControls.classList.toggle('is-active', isMobile() && total > 1);
+          mobileControls.classList.toggle('hidden', !(isMobile() && total > 1));
+        }
+      };
+
+      const scrollToSlide = direction => {
+        const cards = visibleCards();
+        if (!cards.length) return;
+        const current = getSliderIndex();
+        const next = Math.max(0, Math.min(cards.length - 1, current + direction));
+        cards[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        setTimeout(updateSliderUI, 350);
+      };
+
+      const hideAllCards = () => {
+        document.querySelectorAll('.catalog-card').forEach(card => {
+          card.classList.add('is-hidden');
+          card.style.display = 'none';
+        });
+        if (grid) {
+          grid.classList.remove('mobile-slider');
+          grid.scrollLeft = 0;
+        }
+        if (mobileControls) {
+          mobileControls.classList.remove('is-active');
+          mobileControls.classList.add('hidden');
+        }
+        setCount(0);
+      };
+
+      const clearBrandActive = () => {
+        brandTabs.forEach(button => {
+          button.classList.remove('border-[#F97316]', 'bg-[#F97316]/10', 'shadow-accent');
+          button.classList.add('border-[#333129]', 'bg-[#1C1B18]');
+        });
+      };
+
+      const renderTypeFilters = brand => {
+        const types = getUniqueTypes(brand);
+        typeFilters.innerHTML = types.map((type, index) => `
+          <button class="type-filter ${index === 0 ? 'active bg-gradient-to-r from-[#F97316] to-[#EA580C] text-white' : 'border border-[#333129] bg-[#1C1B18] text-[#A8A49B]'} shrink-0 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all hover:text-[#FDBA74] hover:border-[#F97316]/30" data-type="${type}">
+            ${type}
+          </button>
+        `).join('');
+
+        const typeButtons = typeFilters.querySelectorAll('.type-filter');
+        typeButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            selectedType = button.dataset.type;
+            typeButtons.forEach(typeButton => {
+              typeButton.classList.remove('active', 'bg-gradient-to-r', 'from-[#F97316]', 'to-[#EA580C]', 'text-white');
+              typeButton.classList.add('border', 'border-[#333129]', 'bg-[#1C1B18]', 'text-[#A8A49B]');
+            });
+            button.classList.add('active', 'bg-gradient-to-r', 'from-[#F97316]', 'to-[#EA580C]', 'text-white');
+            button.classList.remove('border', 'border-[#333129]', 'bg-[#1C1B18]', 'text-[#A8A49B]');
+            applyFilter();
+          });
+        });
+
+        selectedType = types[0] || null;
+      };
+
+      const applyFilter = () => {
+        if (!selectedBrand || !selectedType) {
+          hideAllCards();
+          if (emptyState) emptyState.classList.remove('hidden');
+          return;
+        }
+
+        let visible = 0;
+        document.querySelectorAll('.catalog-card').forEach(card => {
+          const shouldShow = card.dataset.brand === selectedBrand && card.dataset.type === selectedType;
+          if (shouldShow) {
+            visible += 1;
+            card.style.display = '';
+            setTimeout(() => card.classList.remove('is-hidden'), 10);
+          } else {
+            card.classList.add('is-hidden');
+            setTimeout(() => {
+              if (card.classList.contains('is-hidden')) card.style.display = 'none';
+            }, 180);
+          }
+        });
+
+        if (grid) {
+          grid.classList.toggle('mobile-slider', isMobile());
+          setTimeout(() => {
+            grid.scrollLeft = 0;
+            updateSliderUI();
+          }, 260);
+        }
+
+        if (emptyState) emptyState.classList.toggle('hidden', visible > 0);
+        setTimeout(() => setCount(visible), 220);
+        setHint(`Brand aktif: ${selectedBrand.charAt(0).toUpperCase() + selectedBrand.slice(1)} / Kategori: ${selectedType}.`);
+        lucide.createIcons();
+      };
+
+      brandTabs.forEach(button => {
+        button.addEventListener('click', () => {
+          selectedBrand = button.dataset.filter;
+          selectedType = null;
+          clearBrandActive();
+          button.classList.add('border-[#F97316]', 'bg-[#F97316]/10', 'shadow-accent');
+          button.classList.remove('border-[#333129]', 'bg-[#1C1B18]');
+
+          if (categoryPanel) categoryPanel.classList.remove('hidden');
+          renderTypeFilters(selectedBrand);
+          applyFilter();
+
+          const categoryTop = categoryPanel ? categoryPanel.getBoundingClientRect().top + window.scrollY - 90 : window.scrollY;
+          window.scrollTo({ top: categoryTop, behavior: 'smooth' });
+        });
+      });
+
+      if (resetButton) {
+        resetButton.addEventListener('click', () => {
+          selectedBrand = null;
+          selectedType = null;
+          clearBrandActive();
+          if (categoryPanel) categoryPanel.classList.add('hidden');
+          if (typeFilters) typeFilters.innerHTML = '';
+          hideAllCards();
+          if (emptyState) emptyState.classList.remove('hidden');
+          setHint('Pilih brand terlebih dahulu untuk membuka katalog.');
+          window.scrollTo({ top: document.querySelector('#motor').offsetTop - 80, behavior: 'smooth' });
+        });
+      }
+
+      if (prevButton) prevButton.addEventListener('click', () => scrollToSlide(-1));
+      if (nextButton) nextButton.addEventListener('click', () => scrollToSlide(1));
+      if (grid) {
+        grid.addEventListener('scroll', () => {
+          window.clearTimeout(grid._sliderTimer);
+          grid._sliderTimer = window.setTimeout(updateSliderUI, 80);
+        });
+      }
+      window.addEventListener('resize', () => {
+        if (!selectedBrand || !selectedType) return;
+        if (grid) grid.classList.toggle('mobile-slider', isMobile());
+        updateSliderUI();
+      });
+
+      hideAllCards();
+    };
+
+    // --- Brand Showcase Animation ---
+    const initBrandShowcase = () => {
+      const panels = document.querySelectorAll('.brand-panel');
+      let activeIndex = 0;
+      setInterval(() => {
+        panels.forEach((panel, index) => {
+          const isActive = index === activeIndex;
+          const color = panel.dataset.brandColor;
+          panel.style.borderColor = isActive ? `${color}66` : '#333129';
+          panel.style.transform = isActive ? 'scale(1.02)' : 'scale(1)';
+        });
+        activeIndex = (activeIndex + 1) % panels.length;
+      }, 3000);
+    };
+
+    // --- Chatbot Widget ---
+    const botAnswers = {
+      price: 'Harga OTR motor di katalog saat ini bervariasi mulai Rp 18 juta-an untuk matic entry hingga Rp 113 juta-an untuk sport premium. Untuk estimasi harga spesifik dan promo terbaru, silakan pilih motor di katalog atau langsung chat sales Agustin di +62 877-7660-6664 ya! 🏍️',
+      tenor: 'Kami menyediakan pilihan tenor: 12, 24, 36, dan 48 bulan. Semakin panjang tenor, cicilan per bulan biasanya semakin ringan. Contoh: motor Rp 25 juta dengan DP 10% dari harga OTR dan tenor 36 bulan, cicilan akan menyesuaikan hasil analisa leasing. Untuk simulasi yang lebih tepat, gunakan form Simulasi Kredit di atas ya! 💰',
+      simulation: 'Untuk simulasi kredit yang akurat, silakan isi form Simulasi Kredit di halaman ini. Setelah nominal DP disepakati, akan ada proses survey ke rumah calon pembeli. Hasil approve mengikuti penilaian kelayakan dari leasing, lalu motor diproses kirim setelah disetujui. Atau langsung chat WhatsApp: +62 877-7660-6664 📱',
+      requirements: 'Syarat umum pengajuan kredit:\n• KTP (WNI, usia min 21 thn)\n• Kartu Keluarga\n• Slip gaji / Surat Keterangan Usaha\n• Rekening tabungan 3 bulan terakhir\nSetelah dokumen lengkap, leasing dapat melakukan survey rumah untuk penilaian kelayakan. 📋',
+      location: 'Dealer tujuan berada di area DKI Jakarta. Tersedia di Jakarta Pusat, Jakarta Utara, Jakarta Barat, Jakarta Selatan, dan Jakarta Timur. Pilih kota di form simulasi kredit untuk menentukan dealer terdekat! 📍',
+      contact: 'Silakan hubungi langsung sales kami:\n👤 Agustin Budianto\n📱 WhatsApp: +62 877-7660-6664\nKlik tombol di bawah untuk chat langsung!',
+      fallback: 'Terima kasih pesannya! Untuk respons yang lebih cepat dan tepat, silakan hubungi langsung sales Agustin via WhatsApp di +62 877-7660-6664 ya! 😊'
+    };
+
+    const initChatbot = () => {
+      const chatWindow = document.querySelector('#chatWindow');
+      const chatToggle = document.querySelector('#chatToggle');
+      const chatClose = document.querySelector('#chatClose');
+      const chatArea = document.querySelector('#chatArea');
+      const chatInput = document.querySelector('#chatInput');
+      const chatSend = document.querySelector('#chatSend');
+      const quickReplies = document.querySelector('#quickReplies');
+      let isOpen = false;
+      let typingEl = null;
+
+      const replies = [
+        ['Estimasi Harga Motor', 'price'],
+        ['Info Tenor Kredit', 'tenor'],
+        ['Simulasi Kredit', 'simulation'],
+        ['Syarat Pengajuan Kredit', 'requirements'],
+        ['Lokasi Dealer', 'location'],
+        ['Hubungi Sales Langsung', 'contact']
+      ];
+
+      quickReplies.innerHTML = replies.map(([label, key], index) => `
+        <button class="quick-reply w-full text-left bg-transparent border border-[#333129] rounded-xl p-3 mb-2 text-[#A8A49B] text-sm hover:border-[#F97316]/40 hover:text-[#FDBA74] hover:bg-[#F97316]/5 transition-all chat-bubble-animate" style="animation-delay:${index * 50}ms" data-key="${key}">${label} <span class="float-right">→</span></button>
+      `).join('');
+
+      const autoScroll = () => { chatArea.scrollTop = chatArea.scrollHeight; };
+
+      const addUserBubble = text => {
+        const div = document.createElement('div');
+        div.className = 'chat-bubble-animate ml-auto bg-gradient-to-r from-[#F97316] to-[#EA580C] text-white rounded-2xl rounded-br-md p-3 max-w-[85%] text-sm leading-6 whitespace-pre-line';
+        div.textContent = text;
+        chatArea.appendChild(div);
+        autoScroll();
+      };
+
+      const showTypingIndicator = () => {
+        typingEl = document.createElement('div');
+        typingEl.className = 'bg-[#2A2924] rounded-2xl rounded-bl-md p-3 max-w-[85%] flex gap-1.5 chat-bubble-animate';
+        typingEl.innerHTML = '<span class="typing-dot w-2 h-2 rounded-full bg-[#78746A]"></span><span class="typing-dot w-2 h-2 rounded-full bg-[#78746A]"></span><span class="typing-dot w-2 h-2 rounded-full bg-[#78746A]"></span>';
+        chatArea.appendChild(typingEl);
+        autoScroll();
+      };
+
+      const removeTypingIndicator = () => {
+        if (typingEl) typingEl.remove();
+        typingEl = null;
+      };
+
+      const addBotBubble = (text, optionalButton = false) => {
+        removeTypingIndicator();
+        const div = document.createElement('div');
+        div.className = 'chat-bubble-animate bg-[#2A2924] rounded-2xl rounded-bl-md p-3 max-w-[85%] text-[#FAF9F6] text-sm leading-6 whitespace-pre-line';
+        div.textContent = text;
+        if (optionalButton) {
+          const button = document.createElement('button');
+          button.className = 'mt-3 w-full rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white p-3 text-center font-semibold hover:shadow-[0_4px_16px_rgba(37,211,102,0.25)]';
+          button.textContent = '💬 Chat WhatsApp Agustin';
+          button.addEventListener('click', () => window.open(`https://wa.me/${WA_NUMBER}`, '_blank'));
+          div.appendChild(button);
+        }
+        chatArea.appendChild(div);
+        autoScroll();
+      };
+
+      const respond = (key) => {
+        showTypingIndicator();
+        setTimeout(() => addBotBubble(botAnswers[key] || botAnswers.fallback, key === 'contact'), 800);
+      };
+
+      const handleQuickReply = (key, label) => {
+        addUserBubble(label);
+        respond(key);
+      };
+
+      const matchKeyword = text => {
+        const t = text.toLowerCase();
+        if (t.includes('harga')) return 'price';
+        if (t.includes('tenor')) return 'tenor';
+        if (t.includes('kredit') || t.includes('cicilan')) return 'simulation';
+        if (t.includes('syarat') || t.includes('dokumen')) return 'requirements';
+        if (t.includes('lokasi') || t.includes('dealer') || t.includes('alamat')) return 'location';
+        return 'fallback';
+      };
+
+      const handleFreeText = () => {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        chatInput.value = '';
+        addUserBubble(text);
+        respond(matchKeyword(text));
+      };
+
+      chatToggle.addEventListener('click', () => {
+        isOpen = !isOpen;
+        chatWindow.classList.toggle('open', isOpen);
+        if (isOpen) chatInput.focus();
+      });
+      chatClose.addEventListener('click', () => {
+        isOpen = false;
+        chatWindow.classList.remove('open');
+      });
+      quickReplies.addEventListener('click', e => {
+        const btn = e.target.closest('.quick-reply');
+        if (!btn) return;
+        handleQuickReply(btn.dataset.key, btn.textContent.replace('→', '').trim());
+      });
+      chatSend.addEventListener('click', handleFreeText);
+      chatInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') handleFreeText();
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCatalog();
+      renderMotorOptions();
+      renderCalculatorOptions();
+      renderFaqs();
+      lucide.createIcons();
+      initSmoothScroll();
+      initNavbarScroll();
+      initMobileMenu();
+      initScrollAnimations();
+      initFaqAccordion();
+      initCreditForm();
+      initQuickCreditCalculator();
+      initActiveNavLink();
+      initCatalogFilter();
+      initBrandShowcase();
+      initChatbot();
+    });
+  </script>
+</body>
+</html>
